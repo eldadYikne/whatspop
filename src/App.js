@@ -23,18 +23,19 @@ function App() {
   }, [user])
   return <div className='app'>
     <div className='background-green'> </div>
-    {user ? <Routes>
+    {/* {user ? */}
+     <Routes>
 
       <Route path="/rooms" element={<SideBar />} >
         <Route path=":roomId" element={<Chat />} />
 
       </Route >
     </Routes>
-      :
+      {/* :
       <Routes>
         <Route path="/login" element={<Login />} />
-      </Routes>
-    }
+      </Routes> */}
+    {/* } */}
 
   </div>
 
