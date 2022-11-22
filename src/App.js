@@ -24,6 +24,7 @@ function App() {
   return <div className='app'>
     <div className='background-green'> </div>
     {user ? <Routes>
+
       <Route path="/rooms" element={<SideBar />} >
         <Route path=":roomId" element={<Chat />} />
 
