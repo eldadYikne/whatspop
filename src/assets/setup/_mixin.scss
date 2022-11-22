@@ -1,0 +1,34 @@
+@mixin display-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin for-mobile-only {
+    @media (max-width: $break-small) {
+        @content;
+    }
+}
+@mixin for-small-layout {
+    @media (min-width: $break-small) {
+        @content;
+    }
+}
+
+@mixin for-medium-layout{
+    @media (min-width: $break-meduim){
+        @content;
+    }
+}
+@mixin for-large-layout{
+    @media (min-width:$break-large){
+        @content;
+    }
+}
+
+
+@mixin layoutGTC($size) {
+    grid-template-columns:
+        minmax($layoutPadding, 1fr)
+        minmax(auto, $size)
+        minmax($layoutPadding, 1fr);
+}
