@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/whatspop/static/css/main.16a5f957.css",
+    "main.js": "/whatspop/static/js/main.fbec651d.js",
+    "static/js/787.28cb0dcd.chunk.js": "/whatspop/static/js/787.28cb0dcd.chunk.js",
+    "static/media/message.wav": "/whatspop/static/media/message.8fe3317f5ff8f0128b9a.wav",
+    "service-worker.js": "/whatspop/service-worker.js",
+    "static/media/svg-load.svg": "/whatspop/static/media/svg-load.55f610e89cc3aed0a05baac321a4426f.svg",
+    "static/media/load.svg": "/whatspop/static/media/load.5f2687e1a56dc5786ca9889758cd2f5e.svg",
+    "index.html": "/whatspop/index.html",
+    "main.16a5f957.css.map": "/whatspop/static/css/main.16a5f957.css.map",
+    "main.fbec651d.js.map": "/whatspop/static/js/main.fbec651d.js.map",
+    "787.28cb0dcd.chunk.js.map": "/whatspop/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.16a5f957.css",
+    "static/js/main.fbec651d.js"
+  ]
+}
