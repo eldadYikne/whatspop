@@ -22,8 +22,8 @@ function App() {
     }
   }, [user])
   return <div className='app'>
-    <div className='background-green'> </div>
-    {/* {user ? */}
+    {/* <div className='background-green'> </div> */}
+    {user ?
      <Routes>
 
       <Route path="/rooms" element={<SideBar />} >
@@ -31,11 +31,11 @@ function App() {
 
       </Route >
     </Routes>
-      {/* :
+       :
       <Routes>
         <Route path="/login" element={<Login />} />
-      </Routes> */}
-    {/* } */}
+      </Routes> 
+     } 
 
   </div>
 
