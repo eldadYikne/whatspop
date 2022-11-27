@@ -1,7 +1,7 @@
 # Whatspop
 
 An app I wrote with react, in which you can send message and images to your friends and a groups, add them from application user list.
-[Here is my project link](https://eldadyikne.github.io/whatspop/ "whatspop link")
+[Here is my project link](https://eldadyikne.github.io/whatspop/#/login "whatspop link")
 
 <img width="937" alt="wallet" src="src/assets/img/pop6.png">
 
