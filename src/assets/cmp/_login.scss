@@ -20,16 +20,21 @@
         text-align: center;
         background-color: #fff;
         border-radius: 10px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px;
+
+        @include for-medium-layout {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px;
+
+        }
 
         img {
             object-fit: contain;
             height: 100px;
             margin-bottom: 40px;
         }
-        button{
+
+        button {
             margin-top: 50px;
-            text-transform:inherit !important ;
+            text-transform: inherit !important;
             background-color: #0a8d48;
             color: white;
         }
