@@ -28,7 +28,6 @@ function getRandomColor(num) {
     if (num > colors.length) {
         return 'black'
     }
-    console.log('num',colors[num])
 
     return colors[num];
 }

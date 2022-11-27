@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import db, { auth, provider } from "../firebase";
 import { logIn } from "../store/action";
@@ -10,30 +10,39 @@ export function Login() {
     const user = useSelector(state => state.userModule.user)
     const [usersList, setUserList] = useState(null)
 
+    useEffect(() => {
+        db.collection('users').onSnapshot(snapshot => {
+            const usersNew = snapshot.docs.map(doc => {
+                console.log('docc', doc);
+                return {
+                    id: doc.id,
+                    data: doc.data()
+                }
+            })
+            console.log('usersNew', usersNew)
+
+            setUserList(usersNew)
+        });
+    }, [])
+
     const onSignIn = () => {
         auth.signInWithPopup(provider).then(res => {
             console.log(res.user);
+            console.log(res.data);
+            console.log(res.user.multiFactor.user.displayName);
+            console.log(res);
             dispatch(logIn(res.user))
-            const userExist= usersList.find(user=>user.name===res.name)
-            if(!userExist){
+            const userExist = usersList.find(user => user.data.name === res.user.multiFactor.user.displayName)
+            console.log('userExist',userExist)
+            
+            if (!userExist) {
                 db.collection('users').add({
-                        name: res.user.multiFactor.user.displayName,
-                        imgUrl: res.user.multiFactor.user.photoURL
-                    })
-                }
-        
-            db.collection('users').onSnapshot(snapshot => {
-                const usersNew = snapshot.docs.map(doc => {
-                    console.log('docc', doc);
-                    return {
-                        id: doc.id,
-                        data: doc.data()
-                    }
+                    name: res.user.multiFactor.user.displayName,
+                    imgUrl: res.user.multiFactor.user.photoURL
                 })
-                console.log('usersNew',usersNew)
-                
-                setUserList(usersNew)
-            });
+            }
+
+
         })
             .catch(err => {
                 console.log(err);

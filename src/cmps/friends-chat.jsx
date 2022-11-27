@@ -50,7 +50,7 @@ export function FriendsChat({ chatWithFreind }) {
         {friends && <div className="sidbar-chats">
             {friends.map(friend => {
 
-                return <a onClick={() => createChat(friend.data.name)}>
+                return <a key={friend.id} onClick={() => createChat(friend.data.name)}>
                     <SideBarChat friend={friend} id={friend.id}
                         name={friend.data.name} />
                 </a>

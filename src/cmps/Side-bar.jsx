@@ -11,13 +11,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Loading } from '../assets/img/svg-load.svg'
 import { ReactComponent as Load } from '../assets/img/load.svg'
 import { FriendsChat } from './friends-chat';
+import { storageService } from '../service/storage.service';
 
 export function SideBar() {
     const [rooms, setRooms] = useState()
     const [optionWindow, setOptionWindow] = useState(false)
     const [friendsOpen, setFriendsOpen] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
-    const user = useSelector(state => state.userModule.user)
+    const user = storageService.load('user')
     const { roomId } = useParams()
 
     const dispatch = useDispatch()
@@ -26,8 +27,22 @@ export function SideBar() {
     useEffect(() => {
         window.addEventListener("resize", handleResize, true);
         handleResize()
-        getRooms()
+        // getRooms()
+        const unsubscribe = db.collection('rooms').onSnapshot(snapshot => {
+            const rooms = snapshot.docs.map(doc => ({
+                id: doc.id,
+                data: doc.data()
+            }))
+            dispatch(setRoomList(rooms))
+            setRooms(rooms)
 
+            console.log(rooms);
+            console.log(user.displayName);
+        });
+
+        return () => {
+            unsubscribe()
+        }
     }, [])
 
 
@@ -45,20 +60,23 @@ export function SideBar() {
         setOptionWindow(!optionWindow)
     }
 
-    const getRooms = async () => {
-        const unsubscribe = await db.collection('rooms').onSnapshot(snapshot => {
-            const rooms = snapshot.docs.map(doc => ({
-                id: doc.id,
-                data: doc.data()
-            }))
-            setRooms(rooms)
-            dispatch(setRoomList(rooms))
+    // const getRooms = async () => {
+    //     const unsubscribe = await db.collection('rooms').onSnapshot(snapshot => {
+    //         const rooms = snapshot.docs.map(doc => ({
+    //             id: doc.id,
+    //             data: doc.data()
+    //         }))
+    //         setRooms(rooms)
+    //         dispatch(setRoomList(rooms))
 
-        });
-        return () => {
-            unsubscribe()
-        }
-    }
+    //         console.log(rooms);
+    //     });
+
+    //     return () => {
+    //         unsubscribe()
+    //     }
+    // }
+
     const onLogOut = () => {
         dispatch(logOut())
         navigate('/login')
@@ -82,13 +100,11 @@ export function SideBar() {
 
     }
     const onSearchContact = (ev) => {
-        console.log(ev.target.value)
         ev.preventDefault()
         db.collection('rooms').onSnapshot(snapshot => {
             const rooms = []
             snapshot.docs.map(doc => {
                 if (doc.data()?.contact1) {
-                    console.log(doc.data()?.contact);
                     if (doc.data()?.contact1.includes(ev.target.value)) {
                         rooms.push({
                             id: doc.id,
@@ -103,7 +119,6 @@ export function SideBar() {
                     })
                 }
             })
-            console.log(rooms);
             setRooms(rooms)
 
         });

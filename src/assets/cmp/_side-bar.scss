@@ -22,7 +22,7 @@
     & .sidbar-header {
         display: flex;
         justify-content: space-between;
-        padding: 20px;
+        padding: 5px;
         border-right: 1px solid lightgray;
 
         @include for-mobile-only {
@@ -98,7 +98,7 @@
         background-color: white;
         border-radius: 3px;
         box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%), 0 2px 10px 0 rgb(0 0 0 / 16%);
-        top: 55px;
+        top: 47px;
         height: 100px;
         width: 182px;
         right: -14px;

@@ -31,7 +31,6 @@ export function SideBarChat({ id, name, addNewChat, friend, isPrivate }) {
         }
     }
     const nameToShow = () => {
-        console.log('messages',messages)
         
         if (messages[0].name === user.displayName) {
             if (isPrivate) {

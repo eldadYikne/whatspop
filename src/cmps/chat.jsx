@@ -27,14 +27,11 @@ export function Chat() {
 
     useEffect(() => {
         getChats()
-
         return () => {
             setRoom(null)
         }
 
-
     }, [roomId])
-
     const getChats = async () => {
         setRoom('')
         if (roomId) {
@@ -68,7 +65,6 @@ export function Chat() {
                 })
 
         }
-
     }
     const onEmojiClick = (event, emojiObject) => {
         setChosenEmoji(emojiObject);
@@ -156,6 +152,7 @@ export function Chat() {
         <div className="chat-body">
             {messages && messages.map(message => {
                 return <p key={message.timestamp} className={`chat-massage ${user.displayName === message.name && 'chat-reciever'} ${message.img ? 'message-img' : ''}`}>
+                
                     <span className="chat-name " style={{color: utilService.getRandomColor(message.name.length)}}>{message.name}</span>
 
                     {message.img ? <img src={message.img.url} className="img" /> : <span className="chat-text ">{message.message}</span>}
